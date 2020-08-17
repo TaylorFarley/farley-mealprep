@@ -1,15 +1,23 @@
 require('./db/db')
-const {fetchData}= require('./utils/api')
+const {
+  fetchData
+} = require('./utils/api')
 const Food = require('./models/Food')
 
 const express = require('express')
 const path = require('path')
 const fetch = require('node-fetch')
-const {sgMail} = require('./utils/sendemail')
+const {
+  sgMail
+} = require('./utils/sendemail')
 const app = express();
 const bodyParser = require('body-parser')
-const { nextTick } = require('process')
-const { json } = require('express')
+const {
+  nextTick
+} = require('process')
+const {
+  json
+} = require('express')
 
 const port = process.env.PORT || 3000
 
@@ -20,7 +28,7 @@ app.use(express.urlencoded());
 app.use(express.json());
 
 let arr = []
-let dow = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
+let dow = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 //body parser good to have for forms
 
 app.use(bodyParser.json())
@@ -36,62 +44,68 @@ const viewPath = path.join(__dirname, './views')
 app.set('views-engine', 'ejs')
 app.set('views', viewPath)
 
-app.get('/', async(req, res) => { 
-  const init = await Food.deleteMany({}) 
-     res.render('index.ejs')     
-  
+app.get('/', async (req, res) => {
+  const init = await Food.deleteMany({})
+  res.render('index.ejs')
+
 
 })
-app.get('/testingdata', async(req,res)=>{
+app.get('/testingdata', async (req, res) => {
   const retrieveFood = await Food.find({})
   const xx = retrieveFood[0].title
- res.send(xx + retrieveFood.length)
+  res.send(xx + retrieveFood.length)
 })
 
 
-app.post('/sendmail', async(req, res) => { 
-  // const retrieveFood = await Food.find({})
-  // const message = JSON.stringify(retrieveFood)
+app.post('/sendmail', async (req, res) => {
+   const retrieveFood = await Food.find({})
+   const message = retrieveFood
+   let emailMessage =''
+   for(i=0;i<message.length;i++){
+     emailMessage +=  message[i].dow + ' - ' +message[i].title+ '<br>'
+   }
+   
   const msg = {
     to: 'twfarley88@gmail.com',
     from: 'twfarley88@gmail.com',
-    subject: 'Sending with Twilio SendGrid is Fun',
-    text: 'message',
-    html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+    subject: 'Sending From A Button',
+    text: emailMessage,
+    html: emailMessage,
   };
-  sgMail.send(msg); 
-  res.render('index.ejs')
+   sgMail.send(msg);
  
-})
-
-app.get('/getfood', async(req,res)=>{
-    const retrieveFood = await Food.find({})
-    res.send(retrieveFood)
-
+ 
+  res.render('index.ejs')
 
 })
 
+app.get('/getfood', async (req, res) => {
+  const retrieveFood = await Food.find({})
+  res.send(retrieveFood)
 
 
-app.get('/getNewfood', async(req,res)=>{
-    
-  
-  for(i=0;i<7;i++){      
-        arr[i] = await fetchData()
-        
-    }
-    console.log(arr)
-    const tast = await Food.deleteMany({}) 
-    for(i=0;i<arr.length;i++)
-    {
-      arr[i].dow = dow[i]
-      const letsGo = new Food(arr[i])
-      const doc = await letsGo.save()   
-    }
+})
 
-        res.send(arr)
-  
-        
+
+
+app.get('/getNewfood', async (req, res) => {
+
+
+  for (i = 0; i < 7; i++) {
+    arr[i] = await fetchData()
+
+  }
+  console.log(arr)
+  const tast = await Food.deleteMany({})
+  for (i = 0; i < arr.length; i++) {
+    arr[i].dow = dow[i]
+    const letsGo = new Food(arr[i])
+    const doc = await letsGo.save()
+  }
+
+  res.send(arr)
+
+
 
 
 })
@@ -130,13 +144,13 @@ app.get('/getNewfood', async(req,res)=>{
 //       name: obj.name,
 //       ingredients: obj.ingredients
 //     })
-  
+
 //     const doc = await letsGo.save()
 //     console.log(doc)
 //   }
 
 
 
-    app.listen(port, () => {
-        console.log('lets monGOOOOOOOOOOOOo')
-    })
+app.listen(port, () => {
+  console.log('lets monGOOOOOOOOOOOOo')
+})
