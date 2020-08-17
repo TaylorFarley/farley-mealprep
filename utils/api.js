@@ -8,8 +8,7 @@ function fetchData() {
 
         req.query({
             timeFrame: 'day',
-            targetCalories: '2000',
-            diet: 'vegetarian',
+            targetCalories: '2000',        
             exclude: 'shellfish%2C olives',
         });
 

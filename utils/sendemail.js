@@ -5,7 +5,7 @@ sgMail.setApiKey(api);
 const msg = {
     to: 'twfarley88@gmail.com',
     from: 'twfarley88@gmail.com',
-    subject: 'newKey',
+    subject: 'Your Meal Prep',
     text: 'message',
     html: '<strong>and easy to do anywhere, even with Node.js</strong>',
   };
