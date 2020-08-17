@@ -1,34 +1,3 @@
-// fetch('/', {
-//     method: 'POST',
-//     headers: {
-//         'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify({
-//         user: {
-//             name: "John",
-//             email: "john@example.com"
-//         }
-//     })
-// });
-
-
-// document.querySelector('#showfood').addEventListener('click',()=>{
-
-//     fetch(`/getfood`)
-//     .then((response) => response.json())
-//     .then((data) => {
-//      console.log(data)
-//      document.querySelector('#gohere').innerHTML = ''
-//      for(i=1;i<=data.length;i++)
-//      {
-
-//      document.querySelector(`#name-${i}`).innerHTML += data[i].name + ' '
-//      document.querySelector(`#ingredients-${i}`).innerHTML += 'Ingredients: '+data[i].ingredients + ' '
-//     }
-
-//  })
-// })
-
 
 document.querySelector('#showfood').addEventListener('click', () => {
 
@@ -91,7 +60,7 @@ document.querySelector('#showfoodagain').addEventListener('click', () => {
         .then((data) => {
             console.log(data)
 
-            for (c = 0; c < 6; c++) {
+            for (c = 0; c <= 6; c++) {
                 document.querySelector(`#name-${c}`).innerHTML = ""
                 document.querySelector(`#ingredients-${c}`).innerHTML = ""
             }
