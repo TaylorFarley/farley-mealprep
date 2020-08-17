@@ -60,13 +60,14 @@ app.get('/testingdata', async (req, res) => {
 app.post('/sendmail', async (req, res) => {
    const retrieveFood = await Food.find({})
    const message = retrieveFood
+   const email = req.body.email
    let emailMessage =''
    for(i=0;i<message.length;i++){
      emailMessage +=  message[i].dow + ' - ' +message[i].title+ '<br>'
    }
    
   const msg = {
-    to: 'twfarley88@gmail.com',
+    to: email,
     from: 'twfarley88@gmail.com',
     subject: 'Sending From A Button',
     text: emailMessage,
@@ -74,7 +75,7 @@ app.post('/sendmail', async (req, res) => {
   };
    sgMail.send(msg);
  
- 
+ console.log(email)
   res.render('index.ejs')
 
 })
