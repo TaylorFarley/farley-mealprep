@@ -87,7 +87,14 @@ app.get('/getfood', async (req, res) => {
 
 })
 
+app.put('/getNewRecipe', async (req, res) => {
 
+  const dow = req.body.dow
+  console.log(dow)
+  const newRecipe = await fetchData()
+  res.send(newRecipe)
+  console.log('new recipe:',newRecipe)
+  })
 
 app.get('/getNewfood', async (req, res) => {
 
@@ -105,9 +112,6 @@ app.get('/getNewfood', async (req, res) => {
   }
 
   res.send(arr)
-
-
-
 
 })
 

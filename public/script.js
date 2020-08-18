@@ -1,7 +1,26 @@
 
 document.querySelector('#showfood').addEventListener('click', () => {
+   
+   
+   
+    document.querySelector("#swap-monday").style.display="inline-block"
+    document.querySelector("#swap-monday").addEventListener('click', () => {
+        fetch('/getNewRecipe', {
+            method: 'put',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              dow: 'Monday',
+            
+            })
+          })     
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data)
+            }
+       )
+    })
 
-
+    
 
     for (a = 0; a <= 6; a++) {
         document.querySelector(`#name-${a}`).innerHTML = "loading.."
@@ -26,7 +45,7 @@ document.querySelector('#showfood').addEventListener('click', () => {
 
             for (i = 0; i <= data.length; i++) {
 
-                document.querySelector(`#name-${i}`).innerHTML += data[i].title + ' '
+                document.querySelector(`#name-${i}`).innerHTML +=  data[i].title + ' '
                 document.querySelector(`#ingredients-${i}`).innerHTML += 'Source: ' + data[i].sourceUrl + ' '
                 document.querySelector(`#link-${i}`).href =data[i].sourceUrl
                
