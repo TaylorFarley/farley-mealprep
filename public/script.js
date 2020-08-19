@@ -1,26 +1,139 @@
+swap = ()=>{
+
+    //monday
+     document.querySelector("#swap-monday").style.display="inline-block"
+     document.querySelector("#swap-monday").addEventListener('click', () => {
+         fetch('/getNewRecipe', {
+             method: 'put',
+             headers: { 'Content-Type': 'application/json' },
+             body: JSON.stringify({
+               dow: 'Monday',
+             
+             })
+           })     
+         .then((response) => response.json())
+         .then((data) => {
+             console.log(data)
+             document.querySelector(`#name-0`).innerHTML = data.title
+             }
+        )
+     })
+     //tuesday
+     document.querySelector("#swap-tuesday").style.display="inline-block"
+     document.querySelector("#swap-tuesday").addEventListener('click', () => {
+         fetch('/getNewRecipe', {
+             method: 'put',
+             headers: { 'Content-Type': 'application/json' },
+             body: JSON.stringify({
+               dow: 'Tuesday',
+             
+             })
+           })     
+         .then((response) => response.json())
+         .then((data) => {
+             console.log(data)
+             document.querySelector(`#name-1`).innerHTML = data.title
+             }
+        )
+     })
+ 
+     //wednesday
+     document.querySelector("#swap-wednesday").style.display="inline-block"
+     document.querySelector("#swap-wednesday").addEventListener('click', () => {
+         fetch('/getNewRecipe', {
+             method: 'put',
+             headers: { 'Content-Type': 'application/json' },
+             body: JSON.stringify({
+               dow: 'Wednesday',
+             
+             })
+           })     
+         .then((response) => response.json())
+         .then((data) => {
+             console.log(data)
+             document.querySelector(`#name-2`).innerHTML = data.title
+             }
+        )
+     })
+     //thursday
+     document.querySelector("#swap-thursday").style.display="inline-block"
+     document.querySelector("#swap-thursday").addEventListener('click', () => {
+         fetch('/getNewRecipe', {
+             method: 'put',
+             headers: { 'Content-Type': 'application/json' },
+             body: JSON.stringify({
+               dow: 'Thursday',
+             
+             })
+           })     
+         .then((response) => response.json())
+         .then((data) => {
+             console.log(data)
+             document.querySelector(`#name-3`).innerHTML = data.title
+             }
+        )
+     })
+     //friday
+     document.querySelector("#swap-friday").style.display="inline-block"
+     document.querySelector("#swap-friday").addEventListener('click', () => {
+         fetch('/getNewRecipe', {
+             method: 'put',
+             headers: { 'Content-Type': 'application/json' },
+             body: JSON.stringify({
+               dow: 'Friday',
+             
+             })
+           })     
+         .then((response) => response.json())
+         .then((data) => {
+             console.log(data)
+             document.querySelector(`#name-4`).innerHTML = data.title
+             }
+        )
+     })
+     //saturday
+     document.querySelector("#swap-saturday").style.display="inline-block"
+     document.querySelector("#swap-saturday").addEventListener('click', () => {
+         fetch('/getNewRecipe', {
+             method: 'put',
+             headers: { 'Content-Type': 'application/json' },
+             body: JSON.stringify({
+               dow: 'Saturday',
+             
+             })
+           })     
+         .then((response) => response.json())
+         .then((data) => {
+             console.log(data)
+             document.querySelector(`#name-5`).innerHTML = data.title
+             }
+        )
+     })
+     //sunday
+     document.querySelector("#swap-sunday").style.display="inline-block"
+     document.querySelector("#swap-sunday").addEventListener('click', () => {
+         fetch('/getNewRecipe', {
+             method: 'put',
+             headers: { 'Content-Type': 'application/json' },
+             body: JSON.stringify({
+               dow: 'Sunday',
+             
+             })
+           })     
+         .then((response) => response.json())
+         .then((data) => {
+             console.log(data)
+             document.querySelector(`#name-6`).innerHTML = data.title
+             }
+        )
+     })
+     //
+    }
 
 document.querySelector('#showfood').addEventListener('click', () => {
    
-   
-   
-    document.querySelector("#swap-monday").style.display="inline-block"
-    document.querySelector("#swap-monday").addEventListener('click', () => {
-        fetch('/getNewRecipe', {
-            method: 'put',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              dow: 'Monday',
-            
-            })
-          })     
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data)
-            document.querySelector(`#name-0`).innerHTML = data.title
-            }
-       )
-    })
-
+    swap()
+  
     
 
     for (a = 0; a <= 6; a++) {
@@ -60,7 +173,7 @@ document.querySelector('#showfood').addEventListener('click', () => {
 
 
 document.querySelector('#showfoodagain').addEventListener('click', () => {
-
+    swap()
 
     for (a = 0; a <= 6; a++) {
         document.querySelector(`#name-${a}`).innerHTML = "loading.."
