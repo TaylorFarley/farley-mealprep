@@ -16,6 +16,7 @@ document.querySelector('#showfood').addEventListener('click', () => {
         .then((response) => response.json())
         .then((data) => {
             console.log(data)
+            document.querySelector(`#name-0`).innerHTML = data.title
             }
        )
     })

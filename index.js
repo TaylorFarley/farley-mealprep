@@ -89,11 +89,16 @@ app.get('/getfood', async (req, res) => {
 
 app.put('/getNewRecipe', async (req, res) => {
 
-  const dow = req.body.dow
+  const dayofweek = req.body.dow
   console.log(dow)
-  const newRecipe = await fetchData()
-  res.send(newRecipe)
+  const newRecipe = await fetchData()  
   console.log('new recipe:',newRecipe)
+  const filter = { dow: dayofweek}
+  const update = { title: newRecipe.title}
+  let doc = await Food.findOneAndUpdate(filter,update)
+
+
+  res.send(newRecipe)
   })
 
 app.get('/getNewfood', async (req, res) => {
