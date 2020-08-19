@@ -36,16 +36,15 @@ document.querySelector('#showfood').addEventListener('click', () => {
     fetch(`/getNewFood`)
         .then((response) => response.json())
         .then((data) => {
-            console.log(data)
-
+           
             for (c = 0; c <= 6; c++) {
                 document.querySelector(`#name-${c}`).innerHTML = ""
                 document.querySelector(`#ingredients-${c}`).innerHTML = ""
             }
 
-            for (i = 0; i <= data.length; i++) {
+            for (i = 0; i <= 6; i++) {
 
-                document.querySelector(`#name-${i}`).innerHTML +=  data[i].title + ' '
+                document.querySelector(`#name-${i}`).innerHTML +=  data[i].title
                 document.querySelector(`#ingredients-${i}`).innerHTML += 'Source: ' + data[i].sourceUrl + ' '
                 document.querySelector(`#link-${i}`).href =data[i].sourceUrl
                
