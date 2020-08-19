@@ -69,7 +69,7 @@ app.post('/sendmail', async (req, res) => {
   const msg = {
     to: email,
     from: 'twfarley88@gmail.com',
-    subject: 'Sending From A Button',
+    subject: 'Meal Prep',
     text: emailMessage,
     html: emailMessage,
   };
